@@ -6,8 +6,24 @@ Mobile-first, single-page site built to out-convert directory listings (Angi / B
 
 - Next.js 14 (App Router)
 - Tailwind CSS
+- Inter, self-hosted at build time via `next/font` (no external request, no layout shift)
 - Deployed on Vercel
 - Lead storage: Supabase (`service_requests` table)
+
+## Brand tokens (`tailwind.config.js`)
+
+| Token | Hex | Used for |
+| --- | --- | --- |
+| `steel` | `#152C4A` | Headers, hero, dark sections |
+| `steel-dark` | `#0A1626` | Footer, text on orange CTAs |
+| `steel-light` | `#25456B` | Lighter panels / hover |
+| `safety` | `#F97316` | Every primary CTA |
+| `safety-dark` | `#E0620A` | CTA hover |
+| `safety-deep` | `#C2410C` | Orange text/icons on light backgrounds (AA on white) |
+| `safety-light` | `#FDBA74` | Accents on dark backgrounds |
+| `gold` | `#FBBF24` | Review stars |
+
+**Contrast rule:** orange CTAs use `text-steel-dark`, *not* white. White on `#F97316` is only ~2.9:1 and fails WCAG; near-black on orange is ~7.5:1. Keep this if you swap the orange.
 
 ## Conversion features
 
@@ -17,7 +33,7 @@ Mobile-first, single-page site built to out-convert directory listings (Angi / B
 | Above-the-fold call CTA (name, value prop, hours badge, phone, single CTA) | Hero section |
 | Secondary CTA: 4-field request form with urgency | `components/RequestForm.jsx` |
 | Trust bar (licensed/insured, 10+ yrs, 5.0★/50+ reviews, guarantee) | Directly under hero |
-| Emergency "shut off the main, then call" band | Red band under trust bar |
+| Emergency "shut off the main, then call" band | Orange band under trust bar |
 | Service area + ZIP codes | `lib/site-data.js` → `CITIES` |
 | Real testimonials | `lib/site-data.js` → `TESTIMONIALS` |
 | FAQ answering price, response time, real hours, estimates | `lib/site-data.js` → `FAQS` |
@@ -26,7 +42,7 @@ Mobile-first, single-page site built to out-convert directory listings (Angi / B
 
 ## Speed
 
-No images, no carousels, no autoplay video, no web fonts — every icon is inline SVG, so the page is a single lightweight HTML document with one CSS file.
+No images, no carousels, no autoplay video. Every icon is inline SVG, and Inter is self-hosted by `next/font` — so runtime is a single lightweight HTML document, one CSS file, and two same-origin font files (preloaded automatically).
 
 ## Local development
 
@@ -74,3 +90,4 @@ order by created_at desc;
 - Street address (schema currently lists locality/region/ZIP only)
 - Actual domain (add it to `metadataBase` for absolute canonical/OG URLs)
 - Which review platforms to name explicitly in the footer
+- **Palette note:** the original brief listed patriotic red/white/blue as brand colors. This build uses dark blue-slate + safety orange (blue retained). Red is gone — revert in `tailwind.config.js` if the red needs to stay.
