@@ -4,24 +4,27 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Patriotic brand palette: navy blue / flag red / white
-        navy: {
-          DEFAULT: '#0B2447',
-          dark: '#071A34',
-          light: '#173A6B',
+        // Dark blue-slate base
+        steel: {
+          DEFAULT: '#152C4A', // headers, hero, dark sections
+          dark: '#0A1626', // footer, text on orange CTAs
+          light: '#25456B', // lighter panels / hover
         },
-        flag: {
-          DEFAULT: '#C81E1E',
-          dark: '#9E1414',
-          light: '#E23B3B',
+        // High-visibility emergency orange — every primary CTA
+        safety: {
+          DEFAULT: '#F97316', // CTA background (pair with text-steel-dark)
+          dark: '#E0620A', // CTA hover
+          deep: '#C2410C', // orange text/icons on light backgrounds (AA on white)
+          light: '#FDBA74',
         },
-        gold: '#F5A623',
+        gold: '#FBBF24', // review stars
       },
       boxShadow: {
-        cta: '0 8px 24px -6px rgba(200, 30, 30, 0.5)',
+        cta: '0 8px 24px -6px rgba(249, 115, 22, 0.5)',
       },
       fontFamily: {
         sans: [
+          'var(--font-inter)',
           'system-ui',
           '-apple-system',
           'Segoe UI',
