@@ -20,9 +20,13 @@ const URGENCY_OPTIONS = [
 ];
 
 const fieldClass =
-  'mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/25';
+  'mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-base text-slate-900 placeholder:text-slate-400 focus:border-steel focus:outline-none focus:ring-2 focus:ring-steel/25';
 
-const labelClass = 'block text-sm font-bold text-navy';
+const labelClass = 'block text-sm font-bold text-steel';
+
+// Safety orange + near-black text ≈ 7.5:1 contrast (white on orange is only ~2.9:1)
+const ctaClass =
+  'flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-safety px-5 py-3 text-lg font-black text-steel-dark transition hover:bg-safety-dark';
 
 export default function RequestForm() {
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
@@ -62,17 +66,14 @@ export default function RequestForm() {
         role="status"
         className="rounded-2xl border-2 border-emerald-300 bg-white p-6 shadow-sm"
       >
-        <p className="text-lg font-black text-navy">
+        <p className="text-lg font-black text-steel">
           Got it{firstName ? `, ${firstName}` : ''} — your request is in.
         </p>
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
           We will call you back at the number you gave us. During business hours
           ({BUSINESS.hoursShort}) that is usually within a few minutes.
         </p>
-        <a
-          href={BUSINESS.phoneHref}
-          className="mt-5 flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-flag px-5 py-3 text-lg font-black text-white transition hover:bg-flag-dark"
-        >
+        <a href={BUSINESS.phoneHref} className={`mt-5 ${ctaClass}`}>
           Leaking right now? Call {BUSINESS.phoneDisplay}
         </a>
       </div>
@@ -83,9 +84,9 @@ export default function RequestForm() {
     return (
       <div
         role="alert"
-        className="rounded-2xl border-2 border-amber-300 bg-white p-6 shadow-sm"
+        className="rounded-2xl border-2 border-safety-deep bg-white p-6 shadow-sm"
       >
-        <p className="text-lg font-black text-navy">
+        <p className="text-lg font-black text-steel">
           Online requests are briefly unavailable.
         </p>
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
@@ -93,10 +94,7 @@ export default function RequestForm() {
           leave you waiting, call us directly and we will take the details over
           the phone.
         </p>
-        <a
-          href={BUSINESS.phoneHref}
-          className="mt-5 flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-flag px-5 py-3 text-lg font-black text-white transition hover:bg-flag-dark"
-        >
+        <a href={BUSINESS.phoneHref} className={`mt-5 ${ctaClass}`}>
           Call Now: {BUSINESS.phoneDisplay}
         </a>
       </div>
@@ -211,15 +209,15 @@ export default function RequestForm() {
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="mt-5 flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-flag px-5 py-3.5 text-lg font-black tracking-tight text-white shadow-cta transition hover:bg-flag-dark disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-5 flex min-h-[56px] w-full items-center justify-center gap-2 rounded-xl bg-safety px-5 py-3.5 text-lg font-black tracking-tight text-steel-dark shadow-cta transition hover:bg-safety-dark disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === 'sending' ? 'Sending…' : 'Send My Request'}
       </button>
 
       <p className="mt-3 text-center text-xs leading-relaxed text-slate-500">
-        We only use this to contact you about your plumbing. No spam, no
-        lists. Need help right now?{' '}
-        <a href={BUSINESS.phoneHref} className="font-bold text-flag underline">
+        We only use this to contact you about your plumbing. No spam, no lists.
+        Need help right now?{' '}
+        <a href={BUSINESS.phoneHref} className="font-bold text-safety-deep underline">
           Call {BUSINESS.phoneDisplay}
         </a>
       </p>
