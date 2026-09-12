@@ -11,11 +11,12 @@ import {
 const PHONE_HREF = BUSINESS.phoneHref;
 const PHONE_DISPLAY = BUSINESS.phoneDisplay;
 
+// Safety orange + near-black text = ~7.5:1 contrast (white on orange is only ~2.9:1)
 const btnCall =
-  'inline-flex min-h-[56px] w-full items-center justify-center gap-2.5 rounded-xl bg-flag px-6 py-3.5 text-lg font-black tracking-tight text-white shadow-cta transition hover:bg-flag-dark active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flag sm:w-auto';
+  'inline-flex min-h-[56px] w-full items-center justify-center gap-2.5 rounded-xl bg-safety px-6 py-3.5 text-lg font-black tracking-tight text-steel-dark shadow-cta transition hover:bg-safety-dark active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-safety sm:w-auto';
 
 const btnCallCompact =
-  'inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-flag px-5 py-3 text-base font-extrabold text-white shadow-cta transition hover:bg-flag-dark';
+  'inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-safety px-5 py-3 text-base font-extrabold text-steel-dark shadow-cta transition hover:bg-safety-dark';
 
 // Inline SVG only — zero image requests, so the page paints instantly on 4G.
 const ICONS = {
@@ -101,9 +102,7 @@ function Stars({ className = 'text-gold' }) {
   return (
     <span className={`text-base leading-none tracking-tight ${className}`}>
       <span aria-hidden="true">★★★★★</span>
-      <span className="sr-only">
-        Rated {BUSINESS.rating} out of 5 stars
-      </span>
+      <span className="sr-only">Rated {BUSINESS.rating} out of 5 stars</span>
     </span>
   );
 }
@@ -122,14 +121,14 @@ export default function Page() {
     <>
       {/* ── Compact header ───────────────────────────────────── */}
       <header className="bg-white">
-        <div className="h-1.5 w-full bg-gradient-to-r from-flag via-white to-navy" />
+        <div className="h-1.5 w-full bg-safety" />
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
           <div className="flex items-center gap-2.5">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-navy text-sm font-black text-white">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-steel text-sm font-black text-white">
               DP
             </span>
             <span className="leading-tight">
-              <span className="block text-[15px] font-extrabold tracking-tight text-navy sm:text-base">
+              <span className="block text-[15px] font-extrabold tracking-tight text-steel sm:text-base">
                 {BUSINESS.name}
               </span>
               <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-500 sm:text-[11px]">
@@ -139,7 +138,7 @@ export default function Page() {
           </div>
           <a
             href={PHONE_HREF}
-            className="hidden items-center gap-2 rounded-lg bg-flag px-4 py-2.5 text-sm font-bold text-white transition hover:bg-flag-dark sm:inline-flex"
+            className="hidden items-center gap-2 rounded-lg bg-safety px-4 py-2.5 text-sm font-black text-steel-dark transition hover:bg-safety-dark sm:inline-flex"
           >
             <Icon name="phone" className="h-4 w-4" />
             {PHONE_DISPLAY}
@@ -149,7 +148,7 @@ export default function Page() {
           aria-label="Page sections"
           className="border-t border-slate-200 bg-slate-50"
         >
-          <ul className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-1.5 text-sm font-bold text-navy [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <ul className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-1.5 text-sm font-bold text-steel [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <a
@@ -165,7 +164,7 @@ export default function Page() {
       </header>
 
       {/* ── Hero: everything needed to call is above the fold ── */}
-      <section className="bg-navy text-white">
+      <section className="bg-steel text-white">
         <div className="mx-auto max-w-6xl px-4 pb-10 pt-7 sm:pt-12">
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/15 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-emerald-300 ring-1 ring-emerald-400/40">
@@ -180,7 +179,7 @@ export default function Page() {
 
           <h1 className="mt-5 text-[30px] font-black leading-[1.08] tracking-tight sm:text-5xl">
             Emergency Plumber in{' '}
-            <span className="underline decoration-flag decoration-4 underline-offset-4">
+            <span className="underline decoration-safety decoration-4 underline-offset-4">
               Long Beach, MS
             </span>
           </h1>
@@ -189,7 +188,7 @@ export default function Page() {
             Leaks, under-house plumbing, water heaters and gas lines — fixed fast
             by a local husband-and-wife team with 10+ years on the Mississippi
             Gulf Coast. Typical emergency response:{' '}
-            <strong className="font-extrabold text-white">
+            <strong className="font-extrabold text-safety-light">
               {BUSINESS.responseTime}
             </strong>
             .
@@ -211,7 +210,7 @@ export default function Page() {
             </p>
             <a
               href="#request"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-safety-light underline decoration-safety/50 underline-offset-4 transition hover:decoration-safety-light"
             >
               Or request service online
               <Icon name="arrowRight" className="h-4 w-4" />
@@ -225,7 +224,7 @@ export default function Page() {
         aria-label="Why you can trust us"
         className="border-y border-slate-200 bg-slate-50"
       >
-        <ul className="mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-3 px-4 py-4 text-[13px] font-bold text-navy sm:grid-cols-4 sm:text-sm">
+        <ul className="mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-3 px-4 py-4 text-[13px] font-bold text-steel sm:grid-cols-4 sm:text-sm">
           {[
             { icon: 'shield', label: 'Licensed & Insured' },
             { icon: 'users', label: `${BUSINESS.yearsInBusiness} Years Local` },
@@ -233,7 +232,7 @@ export default function Page() {
             { icon: 'clock', label: '12-Month Guarantee' },
           ].map((item) => (
             <li key={item.label} className="flex items-center gap-2">
-              <Icon name={item.icon} className="h-5 w-5 shrink-0 text-flag" />
+              <Icon name={item.icon} className="h-5 w-5 shrink-0 text-safety-deep" />
               {item.label}
             </li>
           ))}
@@ -241,7 +240,7 @@ export default function Page() {
       </section>
 
       {/* ── Emergency "do this right now" band ──────────────── */}
-      <section className="bg-flag text-white">
+      <section className="bg-safety text-steel-dark">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm font-bold leading-snug sm:text-base">
             Water actively leaking right now? Shut it off at the main valve,
@@ -249,7 +248,7 @@ export default function Page() {
           </p>
           <a
             href={PHONE_HREF}
-            className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-lg bg-white px-4 py-2.5 text-base font-black text-flag transition hover:bg-slate-100"
+            className="inline-flex min-h-[48px] shrink-0 items-center justify-center gap-2 rounded-lg bg-steel-dark px-4 py-2.5 text-base font-black text-white transition hover:bg-steel"
           >
             <Icon name="phone" className="h-4 w-4" />
             {PHONE_DISPLAY}
@@ -259,10 +258,10 @@ export default function Page() {
 
       {/* ── Services ─────────────────────────────────────────── */}
       <section id="services" className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
-        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-flag">
+        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-safety-deep">
           What we fix
         </p>
-        <h2 className="mt-2 text-2xl font-black leading-tight tracking-tight text-navy sm:text-3xl">
+        <h2 className="mt-2 text-2xl font-black leading-tight tracking-tight text-steel sm:text-3xl">
           Straightforward plumbing help, no jargon
         </h2>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-slate-600">
@@ -277,10 +276,10 @@ export default function Page() {
               key={service.title}
               className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-navy text-white">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-steel text-safety-light">
                 <Icon name={service.icon} className="h-6 w-6" />
               </span>
-              <h3 className="mt-4 text-[17px] font-extrabold leading-snug text-navy">
+              <h3 className="mt-4 text-[17px] font-extrabold leading-snug text-steel">
                 {service.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
@@ -290,7 +289,7 @@ export default function Page() {
           ))}
         </ul>
 
-        <div className="mt-8 flex flex-col gap-4 rounded-2xl bg-navy p-5 text-white sm:flex-row sm:items-center sm:justify-between sm:p-6">
+        <div className="mt-8 flex flex-col gap-4 rounded-2xl bg-steel p-5 text-white sm:flex-row sm:items-center sm:justify-between sm:p-6">
           <p className="text-base font-bold leading-snug">
             Not sure if it is an emergency? Call and ask. You will get a straight
             answer and a real ETA — no pressure, no sales pitch.
@@ -304,7 +303,7 @@ export default function Page() {
       {/* ── Why us + how it works ───────────────────────────── */}
       <section className="border-y border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
-          <h2 className="text-2xl font-black leading-tight tracking-tight text-navy sm:text-3xl">
+          <h2 className="text-2xl font-black leading-tight tracking-tight text-steel sm:text-3xl">
             Why your neighbors call us first
           </h2>
 
@@ -330,10 +329,10 @@ export default function Page() {
                 key={item.title}
                 className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-flag/10 text-flag">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-safety/15 text-safety-deep">
                   <Icon name={item.icon} className="h-6 w-6" />
                 </span>
-                <h3 className="mt-4 text-[17px] font-extrabold text-navy">
+                <h3 className="mt-4 text-[17px] font-extrabold text-steel">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
@@ -344,7 +343,7 @@ export default function Page() {
           </ul>
 
           <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
-            <h3 className="text-base font-extrabold text-navy">
+            <h3 className="text-base font-extrabold text-steel">
               How it works — three steps, no runaround
             </h3>
             <ol className="mt-5 grid gap-5 sm:grid-cols-3">
@@ -354,7 +353,7 @@ export default function Page() {
                 'We fix it, and it is covered for 12 months.',
               ].map((step, index) => (
                 <li key={step} className="flex gap-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-navy text-sm font-black text-white">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-steel text-sm font-black text-white">
                     {index + 1}
                   </span>
                   <p className="pt-1 text-sm font-semibold leading-snug text-slate-700">
@@ -369,10 +368,10 @@ export default function Page() {
 
       {/* ── Service area ─────────────────────────────────────── */}
       <section id="area" className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
-        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-flag">
+        <p className="text-[11px] font-black uppercase tracking-[0.2em] text-safety-deep">
           Service area
         </p>
-        <h2 className="mt-2 text-2xl font-black leading-tight tracking-tight text-navy sm:text-3xl">
+        <h2 className="mt-2 text-2xl font-black leading-tight tracking-tight text-steel sm:text-3xl">
           Local coverage across the Gulf Coast
         </h2>
         <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-slate-600">
@@ -386,8 +385,8 @@ export default function Page() {
               key={city.name}
               className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
             >
-              <h3 className="flex items-center gap-2 text-lg font-extrabold text-navy">
-                <Icon name="check" className="h-5 w-5 text-flag" />
+              <h3 className="flex items-center gap-2 text-lg font-extrabold text-steel">
+                <Icon name="check" className="h-5 w-5 text-safety-deep" />
                 {city.name}, MS
               </h3>
               <p className="mt-2 text-sm font-semibold text-slate-600">
@@ -399,7 +398,7 @@ export default function Page() {
 
         <p className="mt-6 rounded-2xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-700">
           Just outside these areas and still need help?{' '}
-          <a href={PHONE_HREF} className="font-bold text-flag underline">
+          <a href={PHONE_HREF} className="font-bold text-safety-deep underline">
             Call {PHONE_DISPLAY}
           </a>{' '}
           — we will tell you honestly whether we can get to you or point you to
@@ -408,7 +407,7 @@ export default function Page() {
       </section>
 
       {/* ── Testimonials ─────────────────────────────────────── */}
-      <section id="reviews" className="border-y border-slate-200 bg-navy text-white">
+      <section id="reviews" className="border-y border-slate-200 bg-steel text-white">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
           <p className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-300">
             Reviews
@@ -452,7 +451,7 @@ export default function Page() {
 
       {/* ── FAQ ──────────────────────────────────────────────── */}
       <section id="faq" className="mx-auto max-w-3xl px-4 py-12 sm:py-16">
-        <h2 className="text-2xl font-black leading-tight tracking-tight text-navy sm:text-3xl">
+        <h2 className="text-2xl font-black leading-tight tracking-tight text-steel sm:text-3xl">
           Questions people ask before they call
         </h2>
         <p className="mt-3 text-[15px] leading-relaxed text-slate-600">
@@ -462,11 +461,11 @@ export default function Page() {
         <div className="mt-7 divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white">
           {FAQS.map((faq, index) => (
             <details key={faq.q} className="group px-4 py-4 sm:px-5" open={index === 0}>
-              <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[15px] font-extrabold leading-snug text-navy marker:hidden">
+              <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-[15px] font-extrabold leading-snug text-steel marker:hidden">
                 {faq.q}
                 <span
                   aria-hidden="true"
-                  className="mt-0.5 shrink-0 text-xl font-black leading-none text-flag transition group-open:rotate-45"
+                  className="mt-0.5 shrink-0 text-xl font-black leading-none text-safety-deep transition group-open:rotate-45"
                 >
                   +
                 </span>
@@ -480,7 +479,7 @@ export default function Page() {
 
         <p className="mt-6 text-sm leading-relaxed text-slate-600">
           Still have a question?{' '}
-          <a href={PHONE_HREF} className="font-bold text-flag underline">
+          <a href={PHONE_HREF} className="font-bold text-safety-deep underline">
             Call {PHONE_DISPLAY}
           </a>{' '}
           — talking to a plumber beats reading about one.
@@ -488,16 +487,13 @@ export default function Page() {
       </section>
 
       {/* ── Secondary CTA: request service form ─────────────── */}
-      <section
-        id="request"
-        className="border-t border-slate-200 bg-slate-50"
-      >
+      <section id="request" className="border-t border-slate-200 bg-slate-50">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:py-16 lg:grid-cols-2 lg:gap-12">
           <div>
-            <p className="text-[11px] font-black uppercase tracking-[0.2em] text-flag">
+            <p className="text-[11px] font-black uppercase tracking-[0.2em] text-safety-deep">
               Request service
             </p>
-            <h2 className="mt-2 text-2xl font-black leading-tight tracking-tight text-navy sm:text-3xl">
+            <h2 className="mt-2 text-2xl font-black leading-tight tracking-tight text-steel sm:text-3xl">
               Prefer not to call? Send us the details.
             </h2>
             <p className="mt-3 text-[15px] leading-relaxed text-slate-600">
@@ -514,7 +510,7 @@ export default function Page() {
                 'Licensed, insured and locally owned',
               ].map((item) => (
                 <li key={item} className="flex items-start gap-2.5">
-                  <Icon name="check" className="mt-0.5 h-5 w-5 shrink-0 text-flag" />
+                  <Icon name="check" className="mt-0.5 h-5 w-5 shrink-0 text-safety-deep" />
                   <span className="text-sm font-semibold text-slate-700">
                     {item}
                   </span>
@@ -524,7 +520,7 @@ export default function Page() {
 
             <a
               href={PHONE_HREF}
-              className="mt-7 inline-flex min-h-[56px] w-full items-center justify-center gap-2.5 rounded-xl border-2 border-navy px-6 py-3.5 text-lg font-black tracking-tight text-navy transition hover:bg-navy hover:text-white sm:w-auto"
+              className="mt-7 inline-flex min-h-[56px] w-full items-center justify-center gap-2.5 rounded-xl border-2 border-steel px-6 py-3.5 text-lg font-black tracking-tight text-steel transition hover:bg-steel hover:text-white sm:w-auto"
             >
               <Icon name="phone" className="h-5 w-5 shrink-0" />
               Call instead: {PHONE_DISPLAY}
@@ -539,7 +535,7 @@ export default function Page() {
       </section>
 
       {/* ── Footer ───────────────────────────────────────────── */}
-      <footer className="bg-navy-dark text-slate-300">
+      <footer className="bg-steel-dark text-slate-300">
         <div className="mx-auto max-w-6xl px-4 pb-28 pt-12 sm:pb-32">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div>
@@ -587,7 +583,7 @@ export default function Page() {
               </p>
               <a
                 href={PHONE_HREF}
-                className="mt-3 inline-block text-xl font-black tracking-tight text-white underline decoration-flag decoration-2 underline-offset-4"
+                className="mt-3 inline-block text-xl font-black tracking-tight text-white underline decoration-safety decoration-2 underline-offset-4"
               >
                 {PHONE_DISPLAY}
               </a>
@@ -612,14 +608,14 @@ export default function Page() {
         <div className="mx-auto flex max-w-3xl items-stretch gap-2 px-3 pb-[max(0.625rem,env(safe-area-inset-bottom))] pt-2.5">
           <a
             href="#request"
-            className="flex shrink-0 items-center gap-1.5 rounded-xl border-2 border-navy px-3 text-[13px] font-bold text-navy transition hover:bg-slate-100"
+            className="flex shrink-0 items-center gap-1.5 rounded-xl border-2 border-steel px-3 text-[13px] font-bold text-steel transition hover:bg-slate-100"
           >
             Request
             <span className="hidden sm:inline">Service</span>
           </a>
           <a
             href={PHONE_HREF}
-            className="flex min-h-[52px] min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-flag px-3 py-3 text-[15px] font-black tracking-tight text-white shadow-cta transition hover:bg-flag-dark sm:text-base"
+            className="flex min-h-[52px] min-w-0 flex-1 items-center justify-center gap-2 rounded-xl bg-safety px-3 py-3 text-[15px] font-black tracking-tight text-steel-dark shadow-cta transition hover:bg-safety-dark sm:text-base"
           >
             <Icon name="phone" className="h-5 w-5 shrink-0" />
             <span className="truncate">Call Now: {PHONE_DISPLAY}</span>
