@@ -1,5 +1,13 @@
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { BUSINESS, CITIES, FAQS, SERVICES, TESTIMONIALS } from '../lib/site-data';
+
+// Self-hosted by next/font at build time: no external request, no layout shift.
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const metadata = {
   title: 'Emergency Plumbing Long Beach MS | Dixie Plumbing Services',
@@ -44,7 +52,7 @@ export const metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0B2447',
+  themeColor: '#152C4A',
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -129,7 +137,7 @@ const structuredData = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <body>
         {children}
         <script
