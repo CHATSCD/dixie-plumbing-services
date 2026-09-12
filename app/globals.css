@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-slate-800 antialiased;
+  }
+
+  /* Keep anchor targets from hiding under the sticky bottom call bar */
+  [id] {
+    scroll-margin-top: 1rem;
+    scroll-margin-bottom: 6rem;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+/* Draws the eye to the primary call button. Disabled for reduced-motion users. */
+@keyframes ctaPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(200, 30, 30, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(200, 30, 30, 0);
+  }
+}
+
+.cta-pulse {
+  animation: ctaPulse 2.6s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cta-pulse {
+    animation: none;
+  }
+}
